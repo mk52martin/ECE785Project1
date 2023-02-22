@@ -13,8 +13,21 @@ int main(){
    outGPIO.setDirection(OUTPUT);    // basic output example
    inGPIO.setDirection(INPUT);      // basic input example
 
+   bool on = false;
+   bool last = false;
+
    while (1) {
-     outGPIO.setValue(inGPIO.getValue());
+    on = inGPIO.getValue()
+    if(on && !last) {
+      outGPIO.setValue(1);
+      last = true;
+    }
+    if(last) {
+      outGPIO.setValue(0);
+    } else if(!on) {
+      last = false;
+    }
+
    }
    
    return 0;
