@@ -17,13 +17,13 @@ int main(){
    bool last = false;
 
    while (1) {
-    on = inGPIO.getValue()
+    on = inGPIO.getValue();
     if(on && !last) {
-      outGPIO.setValue(1);
+      outGPIO.setValue(HIGH);
       last = true;
     }
     if(last) {
-      outGPIO.setValue(0);
+      outGPIO.setValue(LOW);
     } else if(!on) {
       last = false;
     }
