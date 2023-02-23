@@ -15,6 +15,7 @@ int main() {
   struct gpiod_chip *chip;
   struct gpiod_line *in_line, *out_line;
   int req, value;
+  unsigned int last = 0;
 
   chip = gpiod_chip_open("/dev/gpiochip0");
   if (!chip) {
@@ -53,7 +54,15 @@ int main() {
   
   while (run) {
     value = gpiod_line_get_value(in_line);
-    gpiod_line_set_value(out_line, value);
+    if(value && !last) {
+      gpiod_line_set_value(out_line, value);
+      last = 1;
+    } else if (last) {
+      gpiod_line_set_value(out_line, 0);
+    }
+    if(!value) {
+      last = 0;
+    }
   }
   gpiod_chip_close(chip);
 }
