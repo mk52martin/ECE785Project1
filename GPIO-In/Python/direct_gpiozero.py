@@ -6,11 +6,15 @@ from time import sleep
 out = LED(17)
 button = Button(27)
 
+last = True
+
 while True:
-    if button.is_pressed:
+    if button.is_pressed and not last:
         out.off()
         out.on()
+        last = True
     else:
-        out.on()
+        # out.on()
+        last = False
 
     
