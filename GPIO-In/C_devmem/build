@@ -1,5 +1,5 @@
 #!/bin/bash
 gcc c_devmem_echo.c -o c_devmem_echo -O3
-gcc c_devmem_echo_impulse.c -o c_devmem_echo_impulse -O3
+# gcc c_devmem_echo_impulse.c -o c_devmem_echo_impulse -O3
 
 
