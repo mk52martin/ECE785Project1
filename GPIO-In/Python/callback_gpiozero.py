@@ -12,7 +12,7 @@ def on_press():
     out.off()
 
 while True:
-    button.when_pressed(on_press)
+    button.when_pressed(on_press())
     sleep(1000)
 
     
