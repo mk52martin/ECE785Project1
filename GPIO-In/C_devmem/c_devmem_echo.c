@@ -65,7 +65,7 @@ int main(int argc, char * argv []) {
   // both FSEL17 and FSEL27 are 21 bits in, but on different registers
   MODIFY_FIELD(gpio->GPFSEL[2], 21, 3, 0);
 
-  unsigned int last = false;
+  unsigned int last = 0;
 
   while (run) {
     level_in = gpio->GPLEV[0] & MASK(INPUT_POS);
