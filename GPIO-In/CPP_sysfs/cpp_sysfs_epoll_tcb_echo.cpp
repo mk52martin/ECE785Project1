@@ -13,7 +13,7 @@ int echoValue(int var){
    //    outGPIO->streamWrite(HIGH); //write new value
    // }
    outGPIO->streamWrite(inGPIO->getValue());
-   outGPIO->streamWrite(LOW)
+   outGPIO->streamWrite(LOW);
    return 0;
 }
 
