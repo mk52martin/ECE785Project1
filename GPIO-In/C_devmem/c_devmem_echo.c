@@ -65,18 +65,18 @@ int main(int argc, char * argv []) {
   // both FSEL17 and FSEL27 are 21 bits in, but on different registers
   MODIFY_FIELD(gpio->GPFSEL[2], 21, 3, 0);
 
-  bool last = false;
+  unsigned int last = false;
 
   while (run) {
     level_in = gpio->GPLEV[0] & MASK(INPUT_POS);
     if (level_in && !last) {
       gpio->GPSET[0] = MASK(OUTPUT_POS); // Turn the LED on
-      last = true;
+      last = 1;
     } else if (last) {
       gpio->GPCLR[0] = MASK(OUTPUT_POS); // Turn the LED off
     }
     if(!level_in) {
-      last = false;
+      last = 0;
     }
   } 
   close(fd);
