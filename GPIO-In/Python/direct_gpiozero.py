@@ -13,7 +13,7 @@ while True:
         out.off()
         out.on()
         last = True
-    else:
+    if not button.is_pressed:
         # out.on()
         last = False
 
