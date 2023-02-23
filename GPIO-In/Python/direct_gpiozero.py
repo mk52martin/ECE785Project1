@@ -9,11 +9,11 @@ button = Button(27)
 last = True
 
 while True:
-    if button.is_pressed and not last:
-        out.off()
-        last = True
+    if not button.is_pressed and not last:
         out.on()
-    if not button.is_pressed:
+        last = True
+        out.off()
+    if button.is_pressed:
         # out.on()
         last = False
 
