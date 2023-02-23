@@ -88,8 +88,9 @@ static void __exit erpi_gpio_exit(void){
  */
 static irq_handler_t erpi_gpio_irq_handler(unsigned int irq,
                         void *dev_id, struct pt_regs *regs){
-   ledOn = !ledOn;                     // invert the LED state
-   gpio_set_value(gpioLED, ledOn);     // set LED accordingly
+   // ledOn = !ledOn;                     // invert the LED state
+   gpio_set_value(gpioLED, 1);     // set LED accordingly
+   gpio_set_value(gpioLED, 0);
    printk(KERN_INFO "GPIO_TEST: Interrupt! (button is %d)\n",
           gpio_get_value(gpioButton));
    numberPresses++;                    // global counter
