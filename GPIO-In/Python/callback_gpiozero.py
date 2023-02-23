@@ -9,11 +9,10 @@ button = Button(27)
 
 def on_press():
     out.on()
-    print("oops\n")
     out.off()
 
 while True:
-    button.when_pressed = on_press
+    button.when_released = on_press
     sleep(1000)
 
     
