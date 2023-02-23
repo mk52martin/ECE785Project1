@@ -13,9 +13,26 @@ int main(){
    outGPIO.setDirection(OUTPUT);    // basic output example
    inGPIO.setDirection(INPUT);      // basic input example
 
+   bool on;
+   bool last = false;
+
    outGPIO.streamOpen();            // fast write example
    while (1) {
-     outGPIO.streamWrite(inGPIO.getValue());
+
+    on = (inGPIO.getValue() == HIGH);
+    
+    if(on && !last) {
+      outGPIO.streamWrite(HIGH);
+      last = true;
+    } else if(last) {
+       outGPIO.streamWrite(LOW);
+    }
+    if(!on){
+       outGPIO.streamWrite(LOW);
+       last = false;
+    }
+
+    // outGPIO.streamWrite(inGPIO.getValue());
    }
    outGPIO.streamClose();           // close the stream
    
