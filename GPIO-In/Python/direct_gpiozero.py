@@ -11,8 +11,8 @@ last = True
 while True:
     if button.is_pressed and not last:
         out.off()
-        out.on()
         last = True
+        out.on()
     if not button.is_pressed:
         # out.on()
         last = False
