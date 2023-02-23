@@ -7,7 +7,7 @@ out = LED(17)
 button = Button(27)
 
 while True:
-    if button.is_pressed():
+    if button.is_pressed:
         out.on()
     else:
         out.off()
