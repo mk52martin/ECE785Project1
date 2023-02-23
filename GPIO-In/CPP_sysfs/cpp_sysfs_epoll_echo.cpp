@@ -18,7 +18,7 @@ int main(){
     if(high){
       outGPIO.streamWrite(HIGH); //write new value
       int i = 0;
-      while(i < 50) {
+      while(i < 1000) {
         i++;
       }
       outGPIO.streamWrite(LOW); //write new value
