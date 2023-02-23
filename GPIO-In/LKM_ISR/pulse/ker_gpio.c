@@ -36,7 +36,7 @@ static int __init erpi_gpio_init(void) {
     // false prevents in/out change
     gpio_request(gpioButton, "sysfs"); // set up gpioButton
     gpio_direction_input(gpioButton); // set up as input
-    gpio_set_debounce(gpioButton, 200); // debounce delay of 200ms
+    // gpio_set_debounce(gpioButton, 200); // debounce delay of 200ms
     gpio_export(gpioButton, false); // appears in /sys/class/gpio
     printk(KERN_INFO "GPIO_TEST: button value is currently: %d\n",
     gpio_get_value(gpioButton));
@@ -80,10 +80,11 @@ static void __exit erpi_gpio_exit(void) {
 */
 static irq_handler_t erpi_gpio_irq_handler(unsigned int irq, void *dev_id,
                                             struct pt_regs *regs) {
-    ledOn = !ledOn; // invert the LED state
-    gpio_set_value(gpioLED, ledOn); // set LED accordingly
-    printk(KERN_INFO "GPIO_TEST: Interrupt! (button is %d)\n",
-    gpio_get_value(gpioButton));
+    // ledOn = !ledOn; // invert the LED state
+    gpio_set_value(gpioLED, 1); // set LED accordingly
+    gpio_set_value(gpioLED, 0); // set LED accordingly
+    // printk(KERN_INFO "GPIO_TEST: Interrupt! (button is %d)\n",
+    // gpio_get_value(gpioButton));
     numberPresses++; // global counter
     return (irq_handler_t) IRQ_HANDLED; // announce IRQ handled
 }
