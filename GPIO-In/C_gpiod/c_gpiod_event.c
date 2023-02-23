@@ -72,6 +72,8 @@ int main(int argc, char *argv[]) {
   } 
 
   signal(SIGINT, signal_handler);
+  unsigned int last = 0;
+  unsigned int curr = 0;
   
   while (run) {
     // Timeout of 60 seconds, pass in NULL to wait forever
@@ -102,7 +104,17 @@ int main(int argc, char *argv[]) {
 	fprintf(stderr, "unable to get line %d\n", i);
 	continue;
       } else {
-	gpiod_line_set_value(out_line, gpiod_line_get_value(line));
+        curr = gpiod_line_get_value(line);
+        if(curr && !last) {
+          gpiod_line_set_value(out_line, 1);
+          last = 1;
+        } else if (last) {
+          gpiod_line_set_value(out_line, 0);
+        }
+        if(!curr) {
+          last = 0;
+        }
+	      
 	// printf("line %s(%d)\n", gpiod_line_name(line), gpiod_line_offset(line));
       }
     }
