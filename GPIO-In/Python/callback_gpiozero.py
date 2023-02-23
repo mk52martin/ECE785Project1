@@ -9,6 +9,7 @@ button = Button(27)
 
 def on_press():
     out.on()
+    print("oops\n")
     out.off()
 
 while True:
