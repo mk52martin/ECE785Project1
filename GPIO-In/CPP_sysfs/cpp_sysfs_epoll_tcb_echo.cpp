@@ -5,10 +5,16 @@ using namespace exploringRPi;
 using namespace std;
 
 GPIO *outGPIO, *inGPIO;           // global pointers
+bool high;
 
 int echoValue(int var){
-  outGPIO->streamWrite(inGPIO->getValue()); //write new value
-  return 0;
+   // high = (inGPIO->getValue() == HIGH)
+   // if(high){
+   //    outGPIO->streamWrite(HIGH); //write new value
+   // }
+   outGPIO->streamWrite(inGPIO->getValue());
+   outGPIO->streamWrite(LOW)
+   return 0;
 }
 
 int main(){
@@ -19,12 +25,14 @@ int main(){
    outGPIO->streamOpen();         // use fast write to LED
    outGPIO->streamWrite(LOW);     // turn the LED off
    inGPIO->setEdgeType(BOTH);   // wait for either edge
-   cout << "You have 100 seconds to press the button:" << endl;
-   inGPIO->waitForEdge(&echoValue); // pass the callback function
-   cout << "Listening, but also doing something else..." << endl;
-   for(int i=0; i<100; i++){
-      usleep(1000000);            // sleep for 1 second
-      cout << "[sec]" << flush;   // display a message
+   while(1) {
+      // cout << "You have 1000 seconds to press the button:" << endl;
+      inGPIO->waitForEdge(&echoValue); // pass the callback function
+      // cout << "Listening, but also doing something else..." << endl;
+      for(int i=0; i<1000; i++){
+         usleep(1000000);            // sleep for 1 second
+         // cout << "[sec]" << flush;   // display a message
+      }
    }
    outGPIO->streamWrite(LOW);     // turn off the LED after 10 seconds
    outGPIO->streamClose();        // shutdown the stream
