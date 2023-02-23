@@ -8,8 +8,9 @@ button = Button(27)
 
 while True:
     if button.is_pressed:
+        out.off()
         out.on()
     else:
-        out.off()
+        out.on()
 
     
